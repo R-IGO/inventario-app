@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Libro</title>
+</head>
+<body style="font-family: sans-serif; padding: 2rem;">
+
+    <h1>✏️ Editando: {{ libro.titulo }}</h1>
+
+    <div style="background-color: #e8f4f8; padding: 20px; border-radius: 8px; max-width: 500px;">
+        <form action="/editar/{{ libro.id }}" method="POST">
+            
+            <label>Título:</label><br>
+            <input type="text" name="titulo_libro" value="{{ libro.titulo }}" required style="width: 100%; margin-bottom: 10px;">
+            
+            <label>Autor:</label><br>
+            <input type="text" name="autor_libro" value="{{ libro.autor }}" required style="width: 100%; margin-bottom: 10px;">
+            
+            <label>Calif (1-5):</label><br>
+            <input type="number" name="calificacion_libro" value="{{ libro.calificacion }}" min="1" max="5" required style="width: 50px;">
+            
+            <br><br>
+            <button type="submit" style="background-color: #3498db; color: white; border: none; padding: 10px 20px; cursor: pointer;">💾 Guardar Cambios</button>
+            <a href="/" style="margin-left: 10px; color: #7f8c8d;">Cancelar</a>
+        </form>
+    </div>
+
+</body>
+</html>

@@ -14,6 +14,48 @@
     <p>Bienvenido al gestor de mi colección personal.</p>
     
     <hr>
-    <p><em>Próximamente: Lista de elementos...</em></p>
+    <div style="background-color: #f9f9f9; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+        <h3>➕ Agregar Nuevo</h3>
+        
+        <form action="/" method="POST">
+            
+            <label>Título:</label>
+            <input type="text" name="titulo_libro" required placeholder="Ej: Harry Potter">
+            
+            <label>Autor:</label>
+            <input type="text" name="autor_libro" required placeholder="Ej: J.K. Rowling">
+            
+            <label>Calif (1-5):</label>
+            <input type="number" name="calificacion_libro" min="1" max="5" required>
+            
+            <button type="submit" style="background-color: #2ecc71; color: white; border: none; padding: 5px 10px; cursor: pointer;">Guardar</button>
+        </form>
+    </div>
+    <h2>Mi Colección</h2>
+
+    {% for item in libros %}
+        <div style="border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; border-radius: 5px;">
+            <h3>{{ item.titulo }}</h3>
+            
+            <p>
+                <strong>Autor:</strong> {{ item.autor }} <br>
+                <strong>Calificación:</strong> {{ item.calificacion }} / 5 ⭐
+            </p>
+            
+            <a href="/editar/{{ item.id }}" 
+                style="color: blue; text-decoration: none; font-weight: bold; border: 1px solid blue; padding: 4px 8px; border-radius: 4px; margin-right: 5px;">
+                ✏️ Editar
+            </a>
+            
+            <a href="/borrar/{{ item.id }}" 
+                onclick="return confirm('¿Estás seguro de que quieres borrar este libro?')"
+                style="color: red; text-decoration: none; font-weight: bold; border: 1px solid red; padding: 4px 8px; border-radius: 4px;">
+                🗑️ Borrar
+            </a>
+        </div>
+    {% endfor %}
+    {% if not libros %}
+        <p><em>No hay elementos en la colección todavía.</em></p>
+    {% endif %}
 </body>
 </html>
